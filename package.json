@@ -1,0 +1,46 @@
+{
+  "name": "jest_typescript_mock_test",
+  "version": "1.0.0",
+  "description": "jest typescript mock test",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "jest",
+    "mock",
+    "typescript"
+  ],
+  "author": "tst",
+  "license": "ISC",
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/__mocks__/fs.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "node"
+    ],
+    "testPathIgnorePatterns": [
+      "/lib/",
+      "/node_modules/",
+      "/src/components/"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.6",
+    "@types/node": "^10.9.4",
+    "jest": "^23.1.0",
+    "ts-jest": "^22.4.6",
+    "typescript": "~2.9.2"
+  }
+}
