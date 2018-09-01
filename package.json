@@ -14,9 +14,6 @@
   "author": "tst",
   "license": "ISC",
   "jest": {
-    "setupFiles": [
-      "<rootDir>/__mocks__/fs.ts"
-    ],
     "moduleFileExtensions": [
       "ts",
       "js",

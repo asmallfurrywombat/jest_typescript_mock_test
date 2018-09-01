@@ -1,18 +1,29 @@
-import { returnNameInJsonFile } from './index';
-import fs from './__mocks__/fs';
+import { returnNameInJsonFile, actuallyReadExistingFile } from './index';
+import * as fs from 'fs';
 
-jest.mock('fs');
+const MOCK_FILE_INFO = { 'test.json': JSON.stringify({ name: 'myname' }) };
 
 describe('index', () => {
-  const fpath = 'test.json';
-  const MOCK_FILE_INFO = { 'test.json': JSON.stringify({ name: 'myname' }) };
-
-  beforeEach(() => {
-    fs.__setMockFiles(MOCK_FILE_INFO);
-  });
-
   it('returnNameInJsonFile', () => {
+    const mock = jest.spyOn(fs, 'readFileSync');
+    mock.mockImplementation((fpath, opts) => {
+      if(fpath in MOCK_FILE_INFO){
+        return MOCK_FILE_INFO[fpath]
+      }
+      throw 'unexpected fpath'
+    });
     const name: string = returnNameInJsonFile('test.json');
-    expect(name).toBe('myname'); // 1.0.0 is installed and 2.0.0 is available
+    expect(name).toBe('myname');
+    mock.mockRestore()
   });
+
+  it('actuallyReadExistingFile', () => {
+    const name: string = actuallyReadExistingFile();
+    expect(name).toBe('jest_typescript_mock_test');
+  });
+
+  // doesn't work
+  // afterEach(() => {
+  //   jest.clearAllMocks();
+  // });
 });
