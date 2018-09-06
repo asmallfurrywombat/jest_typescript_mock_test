@@ -1,14 +1,8 @@
 # jest_typescript_mock_test
 
-Tries to use a jest mock for readFileSync using typescript, so far unsuccessfully.
+Use a jest fs module mock for readFileSync using typescript.
 
 ```bash
 npm i
 npm test
-```
-
-results in:
-
-```bash
-    TypeError: fs_1.readFileSync is not a function
 ```
